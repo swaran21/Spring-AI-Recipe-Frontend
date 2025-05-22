@@ -1,10 +1,13 @@
+/* App.css */
+
 .App {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem; /* Slightly reduce gap for mobile if desired */
   width: 100%;
 }
 
+/* Tab Navigation */
 .tab-navigation {
   display: flex;
   justify-content: center;
@@ -24,7 +27,7 @@
   cursor: pointer;
   transition: color 0.2s, border-bottom-color 0.2s;
   border-bottom: 3px solid transparent;
-  border-radius: 0;
+  border-radius: 0; /* Tabs usually don't have rounded corners */
 }
 
 .tab-navigation button:hover {
@@ -38,11 +41,12 @@
   font-weight: 600;
 }
 
+/* Card Styling for Components */
 .component-card {
   background-color: var(--card-background);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* Slightly softer shadow */
   border: 1px solid var(--border-color);
   width: 100%;
   box-sizing: border-box;
@@ -56,6 +60,7 @@
   color: var(--primary-color);
 }
 
+/* Form Elements Styling */
 .form-group {
   margin-bottom: 1.25rem;
 }
@@ -74,7 +79,7 @@
   padding: 0.8em 1em;
   border: 1px solid var(--input-border-color);
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: 1rem; /* Ensure readable font size on mobile */
   background-color: var(--input-background);
   color: var(--text-color);
   box-sizing: border-box;
@@ -83,7 +88,7 @@
 .form-group input[type="text"]:focus,
 .form-group textarea:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); 
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
   outline: none;
 }
 
@@ -92,15 +97,17 @@
   resize: vertical;
 }
 
+/* Submit Button for forms inside cards */
 .component-card button[type="submit"],
 .component-card .action-button {
- 
-  display: block; 
-  width: auto; 
-  margin: 1.5rem auto 0; 
+  display: block;
+  width: auto; /* Default width */
+  min-width: 150px; /* Ensure button has a decent minimum width */
+  margin: 1.5rem auto 0; /* Center block button */
   padding: 0.8em 2em;
 }
 
+/* Output Area Styling */
 .output-section {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -120,15 +127,16 @@
 .output-section pre {
   white-space: pre-wrap;
   word-wrap: break-word;
-  font-family: "Courier New", Courier, monospace; 
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.95rem;
   line-height: 1.7;
   color: inherit;
   margin: 0;
   padding: 0;
-  background: transparent; 
+  background: transparent;
 }
 
+/* Error Message */
 .error-message {
   color: var(--error-color);
   font-weight: 500;
@@ -140,37 +148,127 @@
   text-align: center;
 }
 
+/* Loading Indicator Text */
 .loading-text {
   font-style: italic;
   color: var(--secondary-color);
   text-align: center;
   margin-top: 1rem;
 }
+
+/* Styling for AI Chat Component Specifically */
 .chat-input-group {
   display: flex;
-  gap: 0.5rem;
-  align-items: center; 
+  gap: 0.75rem; /* Slightly more gap */
+  align-items: flex-end; /* Align to bottom for better look with multiline textarea */
 }
 .chat-input-group textarea {
-  flex-grow: 1; 
+  flex-grow: 1;
+  line-height: 1.5; /* Improve textarea readability */
 }
 .chat-input-group button {
-  margin-top: 0; 
+  margin-top: 0; /* Reset margin if set elsewhere */
+  flex-shrink: 0; /* Prevent button from shrinking */
+  height: fit-content; /* Adjust button height to content if needed, or set fixed height */
+  align-self: flex-end; /* Ensure it aligns with the bottom of the (potentially multiline) textarea */
+  margin-bottom: 2px; /* Small adjustment for visual alignment with textarea padding */
+}
+
+/* ===== MOBILE RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  /* Broader tablet and mobile breakpoint */
+  .component-card h2 {
+    font-size: 1.6rem; /* Adjust for slightly larger small screens */
+  }
+  .form-group input[type="text"],
+  .form-group textarea {
+    font-size: 0.95rem; /* Slightly smaller input font for more content visibility */
+  }
+  .output-section {
+    padding: 1rem;
+  }
+  .output-section pre {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 600px) {
-  .component-card {
-    padding: 1.5rem;
-  }
-  .component-card h2 {
-    font-size: 1.5rem;
+  .App {
+    gap: 1rem; /* Reduce gap further on small screens */
   }
   .tab-navigation {
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center; /* Center tabs when they wrap to two lines */
+    gap: 0.25rem 0.5rem; /* Row and column gap */
   }
   .tab-navigation button {
     font-size: 0.9rem;
     padding: 0.6em 1em;
+    flex-grow: 1; /* Allow buttons to grow to fill space if few */
+    min-width: 120px; /* Ensure tabs are not too small */
+    text-align: center;
+  }
+
+  .component-card {
+    padding: 1.5rem;
+  }
+  .component-card h2 {
+    font-size: 1.5rem; /* Already good */
+    margin-bottom: 1.25rem;
+  }
+  .component-card button[type="submit"],
+  .component-card .action-button {
+    width: 100%; /* Make action buttons full width */
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0.9em 1.5em; /* Slightly larger padding for easier tapping */
+    font-size: 1rem;
+  }
+
+  /* Make labels slightly smaller to give more space */
+  .form-group label {
+    font-size: 0.85rem;
+  }
+
+  /* Stack chat input on mobile */
+  .chat-input-group {
+    flex-direction: column;
+    align-items: stretch; /* Make button full-width when stacked */
+    gap: 0.75rem;
+  }
+  .chat-input-group button {
+    margin-top: 0; /* Was 0.5rem, adjust as needed or rely on gap */
+    width: 100%; /* Make button full width when stacked */
+    margin-bottom: 0; /* Reset */
+    align-self: auto; /* Reset */
+  }
+  .chat-input-group textarea {
+    font-size: 0.95rem; /* Match other inputs */
+  }
+  .output-section h3 {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 400px) {
+  /* Very small screens */
+  body {
+    padding: 10px; /* Even less padding for very small devices */
+  }
+  .App {
+    gap: 0.75rem;
+  }
+  .component-card {
+    padding: 1rem;
+  }
+  .component-card h2 {
+    font-size: 1.3rem;
+  }
+  .tab-navigation button {
+    font-size: 0.85rem;
+    padding: 0.6em 0.8em;
+  }
+  .output-section pre {
+    font-size: 0.85rem; /* Further reduce for very small screens if needed */
   }
 }
