@@ -1,42 +1,176 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.tab-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 1.5rem;
+}
+
+.tab-navigation button {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: none;
+  padding: 0.75em 1.5em;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s, border-bottom-color 0.2s;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+}
+
+.tab-navigation button:hover {
+  color: var(--primary-color);
+  background-color: var(--tab-hover-bg);
+}
+
+.tab-navigation button.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--tab-active-border);
+  font-weight: 600;
+}
+
+.component-card {
+  background-color: var(--card-background);
   padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.component-card h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 0.8em 1em;
+  border: 1px solid var(--input-border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); 
+  outline: none;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.component-card button[type="submit"],
+.component-card .action-button {
+ 
+  display: block; 
+  width: auto; 
+  margin: 1.5rem auto 0; 
+  padding: 0.8em 2em;
+}
+
+.output-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--output-background);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.output-section h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-size: 1.25rem;
+}
+
+.output-section pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: "Courier New", Courier, monospace; 
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  background: transparent; 
+}
+
+.error-message {
+  color: var(--error-color);
+  font-weight: 500;
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.loading-text {
+  font-style: italic;
+  color: var(--secondary-color);
+  text-align: center;
+  margin-top: 1rem;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.chat-input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center; 
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.chat-input-group textarea {
+  flex-grow: 1; 
+}
+.chat-input-group button {
+  margin-top: 0; 
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 600px) {
+  .component-card {
+    padding: 1.5rem;
   }
-  to {
-    transform: rotate(360deg);
+  .component-card h2 {
+    font-size: 1.5rem;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .tab-navigation {
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .tab-navigation button {
+    font-size: 0.9rem;
+    padding: 0.6em 1em;
+  }
 }
